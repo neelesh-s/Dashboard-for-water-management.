@@ -1,0 +1,1967 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KANE</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      .chartMenu {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 40px;
+        background: #1A1A1A;
+        color: rgb(144, 216, 151);
+        justify-content: center;
+        align-items: center;
+      }
+      .chartMenu p {
+        padding: 10px;
+        font-size: 20px;
+        justify-content: center;
+        align-items: center;
+      }
+      .imagc {
+           background: rgba(228, 223, 225, 0.2);
+           display:flex;
+           padding-left: 1vw;
+           padding-top: 5vh;
+      }
+      .chartCard {
+        width: 100vw;
+        background: rgba(12, 0, 5, 0.815);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top:5vh
+      }
+      .chartCard2 {
+        padding-right: 2vw;
+        background: rgba(255, 26, 104, 0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top:1vh;
+      }
+      .chartBox {
+        width: 1000px;
+        padding: 20px;
+        border-radius: 20px;
+        border: solid 3px rgba(255, 26, 104, 1);
+        background: white;
+      }
+      .chartBox2 {
+        width: 43vw;
+        height:18.5vh;
+        padding: 20px;
+        border-radius: 20px;
+        border: solid 3px rgba(255, 26, 104, 1);
+        background: rgb(241, 236, 239, 0);
+      }
+      img {
+        width:49vw;
+        height:90vh;
+        display:block;
+        object-fit:cover;
+        object-position:center;
+        border-radius: 20px;
+        border: solid 3px rgba(255, 26, 104, 1);
+        transition: 200ms ease-in-out;
+        overflow: hidden;
+      }
+      .jh {
+          padding-left:1vw;
+          padding-right:1vw;
+      }
+      .he{
+        justify-content: center;
+        text-align: center;
+        padding-top: 3px;
+      }
+      .jk:hover > img {
+         transform: scale(1.2);
+      }
+      .container {
+          width: 1000px;
+          max-width:1000px;
+          overflow-x:scroll;
+      }
+      .containerBody{
+        height:600px;
+      }
+      .container9 {
+          width: 1000px;
+          max-width:1000px;
+          overflow-x:scroll;
+      }
+      .containerBody9{
+        height:600px;
+      }
+    </style>
+    </head>
+    <body>
+    <div class="chartMenu">
+      <h1 class="he"> INDIAN  INSTITUTE  OF  TECHNOLOGY,  JODHPUR  SMART  WATER  GRID  SYSTEM</h1>
+    </div>
+    <div class="imagc">
+      <div class="jk">
+      <img class="zoom" src="asd12.jpg" alt="Error loading image" >
+    </div>
+    <div class="jh">
+    <h1>  IITJ has a water grid that supplies water to every household as well as the hostels of the students. </h1>
+    <br>
+    <h1> Current number of active nodes : 3 </h1>
+    <div class="chartCard2">
+      <div class="chartBox2">
+        <canvas class="linechart3" id="myChart3"></canvas>
+        <input type="file" id="uploadfile3" accept=".csv">
+        <button id="uploadconfirm3">Upload File</button>  
+        <button id="resetxcoordinate3">Reset</button>
+      </div>
+    </div>
+    <br>
+    <div class="chartCard2">
+      <div class="chartBox2">
+        <canvas class="linechart3" id="myChart5"></canvas>
+      </div>
+    </div>
+    <br>
+    <div class="chartCard2">
+      <div class="chartBox2">
+        <canvas class="linechart3" id="myChart6"></canvas>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div><hr>
+  <div class="chartCard">
+    <div class="chartBox">
+      <h4>To observe flow, pressure, velocity or voltage</h4>
+        <canvas id="myChart"></canvas>
+        <input type="file" id="uploadfile" accept=".csv">
+        <button id="uploadconfirm">Upload File</button>  
+        <br><br>
+        <button onClick="updateChart('flowData')">Show Flow</button>
+        <button onClick="updateChart('velocityData')">Show Velocity</button>
+        <button onClick="updateChart('pressureData')">Show Pressure</button>
+        <button onClick="updateChart('voltageData')">Show Voltage</button>
+    </div>
+  </div>
+  <div class="chartCard">
+    <div class="chartBox">
+      <h4>Daily water consumption</h4>
+      <canvas id="myChart12"></canvas>
+      <input type="file" id="uploadfile12" accept=".csv">
+      <button id="uploadconfirm12">Upload File</button>  
+      <input onchange="filterData12()" type="date" id="startdate12" value="2022-08-01">
+      <input onchange="filterData12()" type="date" id="enddate12" value="2022-09-30">
+    </div>
+  </div>
+  <div class="chartCard">
+    <div class="chartBox">
+      <h4>Daily water consumption</h4>
+      <div class="container">
+        <div class="containerBody">
+          <canvas id="myChart2"></canvas>
+          <input onchange="filterData()" type="date" id="startdate" value="2022-08-01">
+          <input onchange="filterData()" type="date" id="enddate" value="2022-09-30">
+          <input type="file" id="uploadfile2" accept=".csv">
+          <button id="uploadconfirm2">Upload File</button> 
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chartCard">
+    <div class="chartBox">
+      <h4>Monthly water consumption</h4>
+      <canvas id="myChart7"></canvas>
+      <input type="file" id="uploadfile7" accept=".csv">
+      <button id="uploadconfirm7">Upload File</button> 
+    </div>
+  </div>
+  <div class="chartCard">
+    <div class="chartBox">
+      <h4>Weekly water consumption</h4>
+      <canvas id="myChart8"></canvas>
+      <input type="file" id="uploadfile8" accept=".csv">
+      <button id="uploadconfirm8">Upload File</button> 
+    </div>
+  </div>
+  <div class="chartCard">
+    <div class="chartBox">
+      <h4>Average Hourly Water Consumption</h4>
+      <div class="container9">
+        <div class="containerBody9">
+          <canvas id="myChart9"></canvas>
+          <input type="file" id="uploadfile9"  accept=".csv">
+          <button id="uploadconfirm9">Upload Node</button> 
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chartCard">
+    <div class="chartBox">
+      <h4>Average hourly water consumption</h4>
+      <canvas id="myChart10"></canvas>
+      <input type="file" id="uploadfile10" accept=".csv">
+      <button id="uploadconfirm10">Upload File</button> 
+    </div>
+  </div>
+  <div class="chartCard">
+    <div class="chartBox">
+      <h4>Flow Rate</h4>
+      <canvas id="myChart11"></canvas>
+      <input type="file" id="uploadfile11" accept=".csv">
+      <button id="uploadconfirm11">Upload File</button> 
+      <button id="resetxcoordinate11">Reset</button>
+    </div>
+  </div>
+  <div class="chartCard">
+    <div class="chartBox">
+      <h4>Pressure</h4>
+      <canvas id="myChart13"></canvas>
+      <input type="file" id="uploadfile13" accept=".csv">
+      <button id="uploadconfirm13">Upload File</button> 
+      <button id="resetxcoordinate13">Reset</button>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.1/papaparse.min.js"></script>
+  <script>
+    const data1 = {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    datasets: [{
+    label: 'Data',
+    data: [18, 12, 6, 9, 12, 3, 9],
+    backgroundColor: 'rgba(255, 26, 104, 1)',
+    borderColor: 'rgba(255, 26, 104, 1)',
+    borderWidth: 0.7}]
+    };
+    const config1 = {
+      type: 'line',
+      data: data1,
+      options: {
+        elements:{
+          point:{
+            pointRadius:0,
+          }
+      },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title:{
+            display:true,
+            text:'flow rate(in litres/second)',
+            color:'black'
+        }
+        }
+        }
+      }
+    };
+
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config=config1
+    );
+    
+    const flowData=[];
+    const velocityData=[];
+    const pressureData=[];
+    const labels=[];
+    const voltageData=[];
+
+    const uploadconfirm= document.getElementById('uploadconfirm').addEventListener('click',()=>{
+        Papa.parse(document.getElementById('uploadfile').files[0], {
+            download:true,
+            header:true,
+            skipEmptyLines:true,
+            complete:function(results){
+                for(i=0;i<results.data.length;i++){
+                    flowData.push(results.data[i].flow);
+                    velocityData.push(results.data[i].velocity);
+                    pressureData.push(results.data[i].pressure);
+                    voltageData.push(results.data[i].voltage);
+                    labels.push(results.data[i].time);
+                }
+            }
+        });
+    });
+    
+    function updateChart(label){
+        myChart.data.labels=labels;
+        if(label === 'flowData'){
+            myChart.data.datasets[0].data =flowData;
+            myChart.data.datasets[0].label="FLOW RATE";
+        }
+        if(label === 'velocityData'){
+            myChart.data.datasets[0].data =velocityData;
+            myChart.data.datasets[0].label="VELOCITY";
+        }
+        if(label === 'pressureData'){
+            myChart.data.datasets[0].data =pressureData;
+            myChart.data.datasets[0].label="PRESSURE";
+        }
+        if(label === 'voltageData'){
+            myChart.data.datasets[0].data =voltageData;
+            myChart.data.datasets[0].label="VOLTAGE";
+        }
+        myChart.update();
+    };
+</script>
+<script>
+  const dates = [ '2022-08-01','2022-08-02','2022-08-03','2022-08-04','2022-08-05','2022-08-06','2022-08-07',
+    '2022-08-08','2022-08-09','2022-08-10','2022-08-11','2022-08-12','2022-08-13','2022-08-14',
+    '2022-08-15','2022-08-16','2022-08-17','2022-08-18','2022-08-19','2022-08-20','2022-08-21',
+    '2022-08-22','2022-08-23','2022-08-24','2022-08-25','2022-08-26','2022-08-27','2022-08-28',
+    '2022-08-29','2022-08-30','2022-08-31',
+    '2022-09-01','2022-09-02','2022-09-03','2022-09-04','2022-09-05','2022-09-06','2022-09-07',
+    '2022-09-08','2022-09-09','2022-09-10','2022-09-11','2022-09-12','2022-09-13','2022-09-14',
+    '2022-09-15','2022-09-16','2022-09-17','2022-09-18','2022-09-19','2022-09-20','2022-09-21',
+    '2022-09-22','2022-09-23','2022-09-24','2022-09-25','2022-09-26','2022-09-27','2022-09-28',
+    '2022-09-29','2022-09-30'
+ ];
+  const datapoints2 = [0.057,
+0.064,
+0.041,
+0.05,
+0,
+0.05,
+0.054,
+0.066,
+0,
+0,
+0,
+0.034,
+0,
+0.033,
+0.032,
+0,
+0,
+0,
+0,
+0,
+0.042,
+0.048,
+0.038,
+0.052,
+0.039,
+0,
+0.033,
+0.044,
+0.036,
+0.096,
+0.057,
+0.064,
+0.041,
+0.05,
+0,
+0.05,
+0.054,
+0.066,
+0,
+0,
+0,
+0.034,
+0,
+0.033,
+0.032,
+0,
+0,
+0,
+0,
+0,
+0.042,
+0.048,
+0.038,
+0.052,
+0.039,
+0,
+0.033,
+0.044,
+0.036,
+0.096,
+0.097];
+  
+const data2 = {
+  labels: dates,
+  datasets: [{
+  label: 'Daily water consumption',
+  data: datapoints2,
+  backgroundColor: ['rgba(255, 26, 104, 0.2)'],
+  borderColor: ['rgba(255, 26, 104, 1)'],
+  borderWidth: 1}]};
+
+  const config2 = {
+    type: 'line',
+    data: data2,
+    options: {
+      elements:{
+          point:{
+            pointRadius:0,
+          }
+      },
+      maintainAspectRatio:false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title:{
+          display:true,
+          text:'water consumption(in litres)',
+          color:'black'
+        }
+        }
+      }
+    }
+  };
+
+  const myChart2 = new Chart(
+    document.getElementById('myChart2'),
+    config=config2
+  );
+
+  function filterData(){
+      const dates2=[...dates];
+      const startdate=document.getElementById('startdate');
+      const enddate=document.getElementById('enddate');
+      indexstartdate=dates2.indexOf(startdate.value);
+      indexenddate=dates2.indexOf(enddate.value);
+      const filterDate=dates2.slice(indexstartdate, indexenddate +1);
+      myChart2.config.data.labels=filterDate;
+      myChart2.update(); 
+  }
+
+  const containerBody=document.querySelector('.containerBody');
+  const totallabels=myChart2.data.labels.length;
+
+  if(myChart2.data.labels.length>7){
+    const newWidth=700+(totallabels - 7) * 50;
+    containerBody.style.width=`${newWidth}px`;
+  }
+
+  const waterconsumptiondata2=[];
+  const uploadconfirm2= document.getElementById('uploadconfirm2').addEventListener('click',()=>{
+        Papa.parse(document.getElementById('uploadfile2').files[0], {
+            download:true,
+            header:true,
+            skipEmptyLines:true,
+            complete:function(results){
+                for(i=0;i<results.data.length;i++){
+                    // flowData.push(results.data[i].flow);
+                    // velocityData.push(results.data[i].velocity);
+                    // pressureData.push(results.data[i].pressure);
+                    waterconsumptiondata2.push(results.data[i].Waterconsumption);
+                    // labels2.push(results.data[i].Date);
+                }
+                // myChart2.data.labels=labels2;
+                myChart2.data.datasets[0].data =waterconsumptiondata2
+                myChart2.update();
+            }
+        });
+    });
+</script>
+<script>
+const dates3 = [ 19_59,
+ 1958,
+ 1957,
+ 1956,
+ 1955,
+ 1954,
+ 1953,
+ 1952,
+ 1951,
+ 1950,
+ 1949,
+ 1948,
+ 1947,
+ 1946,
+ 1945,
+ 1944,
+ 1943,
+ 1942,
+ 1941,
+ 1940,
+ 1939,
+ 1938,
+ 1937,
+ 1936,
+ 1935,
+ 1934,
+ 1933,
+ 1932,
+ 1931,
+ 1930];
+const datapoints3 = [2.688,
+3.031,
+1.953,
+2.344,
+0,
+2.391,
+2.578,
+3.125,
+0,
+0,
+0,
+1.617,
+0,
+1.562,
+1.523,
+0,
+0,
+0,
+0,
+0,
+2,
+2.297,
+1.812,
+2.484,
+1.859,
+0,
+1.555,
+2.078,
+1.719,
+4.562];
+
+  const data3 = {
+    labels: dates3,
+    datasets: [{
+      label: 'FLOW RATE',
+      data: datapoints3,
+      backgroundColor: 
+        'rgba(255, 26, 104, 0)',
+        
+      borderColor: 
+        'rgba(255, 26, 104, 1)',
+       
+      borderWidth: 0.5
+    }]
+  };
+
+  // config 
+  const config3 = {
+    type: 'line',
+    data: data3,
+    
+    options: {
+      elements:{
+          point:{
+            pointRadius:0,
+          }
+      },
+      maintainAspectRatio:false,
+      scales: {
+        x:{ ticks:{
+          maxTicksLimit:9
+        },
+            min:0,
+            max:29
+        },
+        y: {
+          beginAtZero: true,
+          title:{
+          display:true,
+          text:'flow rate(in L/s)',
+          color:'black'
+        }
+        }
+      }
+    }
+  };
+
+  const myChart3 = new Chart(
+    document.getElementById('myChart3'),
+    config=config3
+  );
+
+  const dates4 = [ 19_59,
+ 1958,
+ 1957,
+ 1956,
+ 1955,
+ 1954,
+ 1953,
+ 1952,
+ 1951,
+ 1950,
+ 1949,
+ 1948,
+ 1947,
+ 1946,
+ 1945,
+ 1944,
+ 1943,
+ 1942,
+ 1941,
+ 1940,
+ 1939,
+ 1938,
+ 1937,
+ 1936,
+ 1935,
+ 1934,
+ 1933,
+ 1932,
+ 1931,
+ 1930];
+  const datapoints4 = [0.057,
+0.064,
+0.041,
+0.05,
+0,
+0.05,
+0.054,
+0.066,
+0,
+0,
+0,
+0.034,
+0,
+0.033,
+0.032,
+0,
+0,
+0,
+0,
+0,
+0.042,
+0.048,
+0.038,
+0.052,
+0.039,
+0,
+0.033,
+0.044,
+0.036,
+0.096];
+
+  const data4 = {
+    labels: dates4,
+    datasets: [{
+      label: 'VELOCITY',
+      data: datapoints4,
+      backgroundColor: 
+        'rgba(255, 26, 104, 0)',
+        
+      borderColor: 
+        'rgba(255, 26, 104, 1)',
+       
+      borderWidth: 0.5
+    }]
+  };
+
+  const config4 = {
+    type: 'line',
+    data: data4,
+
+    options: {
+      elements:{
+          point:{
+            pointRadius:0,
+          }
+      },
+      maintainAspectRatio:false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title:{
+          display:true,
+          text:'water consumption(in litres)'
+        }
+        }
+      }
+    }
+  };
+
+  const myChart4 = new Chart(
+    document.getElementById('myChart4'),
+    config=config4
+  );
+
+  const flowData4=[];
+  const velocityData4=[];
+  const pressureData4=[];
+  const labels4=[];
+  const voltageData4=[];
+  const dates5 = [ 19_59,
+ 1958,
+ 1957,
+ 1956,
+ 1955,
+ 1954,
+ 1953,
+ 1952,
+ 1951,
+ 1950,
+ 1949,
+ 1948,
+ 1947,
+ 1946,
+ 1945,
+ 1944,
+ 1943,
+ 1942,
+ 1941,
+ 1940,
+ 1939,
+ 1938,
+ 1937,
+ 1936,
+ 1935,
+ 1934,
+ 1933,
+ 1932,
+ 1931,
+ 1930];
+  const datapoints5 = [2.688,
+3.031,
+1.953,
+2.344,
+0,
+2.391,
+2.578,
+3.125,
+0,
+0,
+0,
+1.617,
+0,
+1.562,
+1.523,
+0,
+0,
+0,
+0,
+0,
+2,
+2.297,
+1.812,
+2.484,
+1.859,
+0,
+1.555,
+2.078,
+1.719,
+4.562];
+
+  const data5 = {
+    labels: dates5,
+    datasets: [{
+      label: 'PRESSURE',
+      data: datapoints5,
+      backgroundColor: 
+        'rgba(255, 26, 104, 0)',
+        
+      borderColor: 
+        'rgba(255, 26, 104, 1)',
+       
+      borderWidth: 0.5
+    }]
+  };
+
+  const config5 = {
+    type: 'line',
+    data: data5,
+    options: {
+      elements:{
+          point:{
+            pointRadius:0,
+          }
+      },
+      maintainAspectRatio:false,
+      scales: {
+        x:{ ticks:{
+          maxTicksLimit:9
+        }
+            
+        },
+        y: {
+          beginAtZero: true,
+          title:{
+          display:true,
+          text:'pressure(in bar)',
+          color:'black'
+        }
+        }
+      }
+    }
+  };
+
+  const myChart5 = new Chart(
+    document.getElementById('myChart5'),
+    config=config5
+  );
+
+  const flowData5=[];
+    const velocityData5=[];
+    const pressureData5=[];
+    const labels5=[];
+    const voltageData5=[];
+    const dates6 = [ 19_59,
+ 1958,
+ 1957,
+ 1956,
+ 1955,
+ 1954,
+ 1953,
+ 1952,
+ 1951,
+ 1950,
+ 1949,
+ 1948,
+ 1947,
+ 1946,
+ 1945,
+ 1944,
+ 1943,
+ 1942,
+ 1941,
+ 1940,
+ 1939,
+ 1938,
+ 1937,
+ 1936,
+ 1935,
+ 1934,
+ 1933,
+ 1932,
+ 1931,
+ 1930];
+
+  const datapoints6 = [2.688,
+3.031,
+1.953,
+2.344,
+0,
+2.391,
+2.578,
+3.125,
+0,
+0,
+0,
+1.617,
+0,
+1.562,
+1.523,
+0,
+0,
+0,
+0,
+0,
+2,
+2.297,
+1.812,
+2.484,
+1.859,
+0,
+1.555,
+2.078,
+1.719,
+4.562];
+
+  const data6 = {
+    labels: dates6,
+    datasets: [{
+      label: 'VOLTAGE',
+      data: datapoints6,
+      backgroundColor: 
+        'rgba(255, 26, 104, 0)',
+        
+      borderColor: 
+        'rgba(255, 26, 104, 1)',
+       
+      borderWidth: 0.5
+    }]
+  };
+
+  // config 
+  const config6 = {
+    type: 'line',
+    data: data6,
+    options: {
+      elements:{
+          point:{
+            pointRadius:0,
+            // pointBorderWidth	:0,
+            // pointHitRadius:0,
+            // pointStyle:false
+          }
+      },
+      maintainAspectRatio:false,
+      scales: {
+        x:{ ticks:{
+          maxTicksLimit:9
+        }
+        },
+        y: {
+          beginAtZero: true,
+          title:{
+          display:true,
+          text:'Voltage(in V)',
+          color:'black'
+        }
+        }
+      }
+    }
+  };
+
+  // render init block
+  const myChart6 = new Chart(
+    document.getElementById('myChart6'),
+    config=config6
+  );
+
+    const flowData6=[];
+    const velocityData6=[];
+    const pressureData6=[];
+    const labels6=[];
+    const voltageData6=[];
+
+    // const uploadconfirm6= document.getElementById('uploadconfirm6').addEventListener('click',()=>{
+    //     Papa.parse(document.getElementById('uploadfile6').files[0], {
+    //         download:true,
+    //         header:true,
+    //         skipEmptyLines:true,
+    //         complete:function(results){
+    //             for(i=0;i<results.data.length;i++){
+    //                 flowData6.push(results.data[i].flow);
+    //                 velocityData6.push(results.data[i].velocity);
+    //                 pressureData6.push(results.data[i].pressure);
+    //                 voltageData6.push(results.data[i].voltage);
+    //                 labels6.push(results.data[i].time);
+    //             }
+    //         }
+    //     });
+    // });
+    
+    // function updateChart6(label){
+    //     myChart6.data.labels=labels6;
+        
+    //     if(label === 'flowData6'){
+    //         myChart6.data.datasets[0].data =flowData6;
+    //         myChart6.data.datasets[0].label="FLOW RATE";
+    //     }
+    //     if(label === 'velocityData6'){
+    //         myChart6.data.datasets[0].data =velocityData6;
+    //         myChart6.data.datasets[0].label="VELOCITY";
+
+    //     }
+    //     if(label === 'pressureData6'){
+    //         myChart6.data.datasets[0].data =pressureData6;
+    //         myChart6.data.datasets[0].label="PRESSURE";
+
+    //     }
+    //     if(label === 'voltageData6'){
+    //         myChart6.data.datasets[0].data =voltageData6;
+    //         myChart6.data.datasets[0].label="VOLTAGE";
+
+    //     }
+    //     myChart6.update();
+    // };
+
+    // const uploadconfirm5= document.getElementById('uploadconfirm5').addEventListener('click',()=>{
+    //     Papa.parse(document.getElementById('uploadfile5').files[0], {
+    //         download:true,
+    //         header:true,
+    //         skipEmptyLines:true,
+    //         complete:function(results){
+    //             for(i=0;i<results.data.length;i++){
+    //                 flowData5.push(results.data[i].flow);
+    //                 velocityData5.push(results.data[i].velocity);
+    //                 pressureData5.push(results.data[i].pressure);
+    //                 voltageData5.push(results.data[i].voltage);
+    //                 labels5.push(results.data[i].time);
+    //             }
+    //         }
+    //     });
+    // });
+   
+    let totentries=0;
+    const flowData3=[];
+    const velocityData3=[];
+    const pressureData3=[];
+    const labels3=[];
+    const voltageData3=[];
+
+    const resetxcoordinate3=document.getElementById('resetxcoordinate3').addEventListener('click',()=>{
+      myChart3.config.options.scales.x.min=0;
+      myChart3.update();
+
+    })
+
+    const uploadconfirm3= document.getElementById('uploadconfirm3').addEventListener('click',()=>{
+        Papa.parse(document.getElementById('uploadfile3').files[0], {
+            download:true,
+            header:true,
+            skipEmptyLines:true,
+            complete:function(results){
+                for(i=0;i<results.data.length;i++){
+                    flowData3.push(results.data[i].flow);
+                    velocityData4.push(results.data[i].velocity);
+                    pressureData5.push(results.data[i].pressure);
+                    voltageData6.push(results.data[i].voltage);
+                    labels3.push(results.data[i].time);
+                }
+                totentries=results.data.length;
+                myChart3.data.labels=labels3;
+                myChart3.data.datasets[0].data =flowData3;
+            myChart3.data.datasets[0].label="FLOW RATE";
+            myChart3.update();
+            // myChart4.data.labels=labels3;
+            //     myChart4.data.datasets[0].data =velocityData4;
+            // myChart4.data.datasets[0].label="VELOCITY";
+            // myChart4.update();
+            myChart5.data.labels=labels3;
+                myChart5.data.datasets[0].data =pressureData5;
+            myChart5.data.datasets[0].label="PRESSURE";
+            myChart5.update();
+            myChart6.data.labels=labels3;
+                myChart6.data.datasets[0].data =voltageData6;
+            myChart6.data.datasets[0].label="VOLTAGE";
+            myChart6.update();
+            }
+        });
+    });
+
+    function zoomClick(click,chart){
+      const{scales:{x,y}}=chart;
+      chart.config.options.scales.x.min=x.getValueForPixel(click.offsetX);
+      chart.config.options.scales.x.max=totentries;
+      chart.update();
+    }
+    
+    myChart3.canvas.addEventListener('click',(e)=>{
+         zoomClick(e,myChart3);
+    });
+</script>
+
+<script>
+  const dates7 = [4, 5, 6, 7, 8, 9];
+  const datapoints7 = [217040, 226106, 124634, 57479, 71073, 56465];
+
+  const data7 = {
+    labels: ['April 2022', 'May 2022', 'June 2022', 'July 2022', 'August 2022', 'September 2022'],
+      datasets: [{
+        label: 'Water Consumption (in litres)',
+        data: [217040, 226106, 124634, 57479, 71073, 56465],
+      backgroundColor: [
+        'rgba(255, 26, 104, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(0, 0, 0, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 26, 104, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+        'rgba(0, 0, 0, 1)'
+      ],
+       
+      borderWidth: 1
+    }]
+  };
+
+  // config 
+  const config7 = {
+    type: 'bar',
+    data: data7,
+    options: {
+      // maintainAspectRatio:false,
+      scales: {
+        y: {
+          beginAtZero: true,
+        
+        title:{
+          display:true,
+          text:'water consumption(in litres)',
+          color:'black'
+        }}
+      }
+    }
+  };
+
+  const myChart7 = new Chart(
+    document.getElementById('myChart7'),
+    config=config7
+  );
+  const waterconsumptiondata7=[];
+    const labels7=[];
+
+    const uploadconfirm7= document.getElementById('uploadconfirm7').addEventListener('click',()=>{
+        Papa.parse(document.getElementById('uploadfile7').files[0], {
+            download:true,
+            header:true,
+            skipEmptyLines:true,
+            complete:function(results){
+                for(i=0;i<results.data.length;i++){
+                    waterconsumptiondata7.push(results.data[i].waterconsumption);
+                    labels7.push(results.data[i].month);
+                }
+                myChart7.data.labels=labels7;
+            myChart7.data.datasets[0].data =waterconsumptiondata7;
+            myChart7.data.datasets[0].label="Monthly water consumption";
+            myChart7.update();
+            }
+        });
+    });
+</script>
+<script>
+  const data8 = {
+    labels: [31, 32, 33, 34, 35, 36, 37, 38],
+      datasets: [{
+        label: 'Weekly Consumption(in litres)',
+        data: [16820,15786,13244,15398,14967,10309,11916,12654],
+      backgroundColor: [
+        'rgba(255, 26, 104, 0.2)',
+        
+      ],
+      borderColor: [
+        'rgba(255, 26, 104, 1)',
+      ],
+       
+      borderWidth: 1
+    }]
+  };
+
+  const config8 = {
+    type: 'bar',
+    data: data8,
+    options: {
+      scales: {
+        x:{ ticks:{
+          maxTicksLimit:4
+        },
+        title:{
+          display:true,
+          text:'week',
+          color:'black'
+        }
+        },
+        y: {
+          beginAtZero: true,
+          title:{
+          display:true,
+          text:'water consumption(in litres)',
+          color:'black'
+        }
+        }
+      }
+    }
+  };
+
+  const myChart8 = new Chart(
+    document.getElementById('myChart8'),
+    config=config8
+  );
+  const waterconsumptiondata8=[];
+    const labels8=[];
+
+    const uploadconfirm8= document.getElementById('uploadconfirm8').addEventListener('click',()=>{
+        Papa.parse(document.getElementById('uploadfile8').files[0], {
+            download:true,
+            header:true,
+            skipEmptyLines:true,
+            complete:function(results){
+                for(i=0;i<results.data.length;i++){
+                    waterconsumptiondata8.push(results.data[i].waterconsumption);
+                    labels8.push(results.data[i].week);
+                }
+                myChart8.data.labels=labels8;
+            myChart8.data.datasets[0].data =waterconsumptiondata8;
+            myChart8.data.datasets[0].label="Weekly water consumption";
+            myChart8.update();
+            }
+        });
+    });
+</script>
+<script>
+     const dates9 = [ 19_59,
+ 1958,
+ 1957,
+ 1956,
+ 1955,
+ 1954,
+ 1953,
+ 1952,
+ 1951,
+ 1950,
+ 1949,
+ 1948,
+ 1947,
+ 1946,
+ 1945,
+ 1944,
+ 1943,
+ 1942,
+ 1941,
+ 1940,
+ 1939,
+ 1938,
+ 1937,
+ 1936,
+ 1935,
+ 1934,
+ 1933,
+ 1932,
+ 1931,
+ 1930];
+  const datapoints9 = [0.057,
+0.064,
+0.041,
+0.05,
+0,
+0.05,
+0.054,
+0.066,
+0,
+0,
+0,
+0.034,
+0,
+0.033,
+0.032,
+0,
+0,
+0,
+0,
+0,
+0.042,
+0.048,
+0.038,
+0.052,
+0.039,
+0,
+0.033,
+0.044,
+0.036,
+0.096];
+  
+
+  const data9 = {
+    labels: dates9,
+    datasets: [{
+      label: 'Weekly Sales',
+      data: datapoints9,
+      backgroundColor: [
+        'rgba(255, 26, 104, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(0, 0, 0, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 26, 104, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+        'rgba(0, 0, 0, 1)'
+      ],
+      borderWidth: 1
+    }]
+  };
+
+  const config9 = {
+    type: 'line',
+    data: data9,
+    options: {
+      maintainAspectRatio:false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title:{
+          display:true,
+          text:'water consumption(in litres)',
+          color:'black'
+        }
+        }
+      }
+    }
+  };
+
+  const myChart9 = new Chart(
+    document.getElementById('myChart9'),
+    config=config9
+  );
+  
+  const containerBody9=document.querySelector('.containerBody9');
+  const totallabels9=myChart9.data.labels.length;
+  if(myChart9.data.labels.length>7){
+    const newWidth=700+(totallabels9 - 7) * 50;
+    containerBody9.style.width=`${newWidth}px`;
+  }
+    const waterconsumptiondata9=[];
+    const labels9=[];
+
+    const uploadconfirm9= document.getElementById('uploadconfirm9').addEventListener('click',()=>{
+        Papa.parse(document.getElementById('uploadfile9').files[0], {
+            download:true,
+            header:true,
+            skipEmptyLines:true,
+            complete:function(results){
+                for(i=0;i<results.data.length;i++){
+                    waterconsumptiondata9.push(results.data[i].Averagewaterconsumption);
+                    // velocityData.push(results.data[i].velocity);
+                    // pressureData.push(results.data[i].pressure);
+                    // voltageData.push(results.data[i].voltage);
+                    labels9.push(results.data[i].hour);
+                }
+                myChart9.data.labels=labels9;
+                myChart9.data.datasets[0].data =waterconsumptiondata9;
+                myChart9.data.datasets[0].label="Hourly water consumption";
+                myChart9.update();
+            }
+        });
+    });
+   
+</script>
+<script>
+      const dates10 = [ 19_59,
+ 1958,
+ 1957,
+ 1956,
+ 1955,
+ 1954,
+ 1953,
+ 1952,
+ 1951,
+ 1950,
+ 1949,
+ 1948,
+ 1947,
+ 1946,
+ 1945,
+ 1944,
+ 1943,
+ 1942,
+ 1941,
+ 1940,
+ 1939,
+ 1938,
+ 1937,
+ 1936,
+ 1935,
+ 1934,
+ 1933,
+ 1932,
+ 1931,
+ 1930];
+  const datapoints10 = [0.057,
+0.064,
+0.041,
+0.05,
+0,
+0.05,
+0.054,
+0.066,
+0,
+0,
+0,
+0.034,
+0,
+0.033,
+0.032,
+0,
+0,
+0,
+0,
+0,
+0.042,
+0.048,
+0.038,
+0.052,
+0.039,
+0,
+0.033,
+0.044,
+0.036,
+0.096];
+  
+
+  const data10 = {
+    labels: dates10,
+    datasets: [{
+      label: 'Water consumption(in litres)',
+      data: datapoints10,
+      backgroundColor: [
+        'rgba(255, 26, 104, 0.9)'
+      ],
+      borderColor: [
+        'rgba(255, 26, 104, 1)'
+      ],
+      borderWidth: 1
+    }]
+  };
+
+  const config10 = {
+    type: 'bar',
+    data: data10,
+    options: {
+      scales: {
+        x:{ticks:{maxTicksLimit:12}},
+        y: {
+          beginAtZero: true,
+          title:{
+          display:true,
+          text:'water consumption(in litres)',
+          color:'black'
+        }
+        }
+      }
+    }
+  };
+
+  const myChart10 = new Chart(
+    document.getElementById('myChart10'),
+    config=config10
+  );
+
+    const waterconsumptiondata10=[];
+    const labels10=[];
+
+    const uploadconfirm10= document.getElementById('uploadconfirm10').addEventListener('click',()=>{
+        Papa.parse(document.getElementById('uploadfile10').files[0], {
+            download:true,
+            header:true,
+            skipEmptyLines:true,
+            complete:function(results){
+                for(i=0;i<results.data.length;i++){
+                    waterconsumptiondata10.push(results.data[i].Averagewaterconsumption);
+                    labels10.push(results.data[i].hour);
+                }
+                myChart10.data.labels=labels10;
+            myChart10.data.datasets[0].data =waterconsumptiondata10;
+            myChart10.data.datasets[0].label="Hourly water consumption";
+            myChart10.update();
+            }
+        });
+    });
+</script>
+<script>
+    const dates11 = [ 19_59,
+ 1958,
+ 1957,
+ 1956,
+ 1955,
+ 1954,
+ 1953,
+ 1952,
+ 1951,
+ 1950,
+ 1949,
+ 1948,
+ 1947,
+ 1946,
+ 1945,
+ 1944,
+ 1943,
+ 1942,
+ 1941,
+ 1940,
+ 1939,
+ 1938,
+ 1937,
+ 1936,
+ 1935,
+ 1934,
+ 1933,
+ 1932,
+ 1931,
+ 1930];
+  const datapoints11 = [2.688,
+3.031,
+1.953,
+2.344,
+0,
+2.391,
+2.578,
+3.125,
+0,
+0,
+0,
+1.617,
+0,
+1.562,
+1.523,
+0,
+0,
+0,
+0,
+0,
+2,
+2.297,
+1.812,
+2.484,
+1.859,
+0,
+1.555,
+2.078,
+1.719,
+4.562];
+
+  const data11 = {
+    labels: dates11,
+    datasets: [{
+      label: 'FLOW RATE',
+      data: datapoints11,
+      backgroundColor: 
+        'rgba(255, 26, 104, 0)',
+        
+      borderColor: 
+        'rgba(255, 26, 104, 1)',
+       
+      borderWidth: 0.5
+    }]
+  };
+
+  const config11 = {
+    type: 'line',
+    data: data11,
+    
+    options: {
+      elements:{
+          point:{
+            pointRadius:0,
+          }
+      },
+      scales: {
+        x:{
+            min:0,
+            max:29
+        },
+        y: {
+          beginAtZero: true,
+          title:{
+          display:true,
+          text:'flow rate(in litres/second)',
+          color:'black'
+        }
+        }
+      }
+    }
+  };
+
+  const myChart11 = new Chart(
+    document.getElementById('myChart11'),
+    config=config11
+  );
+
+    let totentries11=0;
+    const flowData11=[];
+    const velocityData11=[];
+    const pressureData11=[];
+    const labels11=[];
+    const voltageData11=[];
+
+    const resetxcoordinate11=document.getElementById('resetxcoordinate11').addEventListener('click',()=>{
+      myChart11.config.options.scales.x.min=0;
+      myChart11.update();
+
+    })
+
+    const uploadconfirm11= document.getElementById('uploadconfirm11').addEventListener('click',()=>{
+        Papa.parse(document.getElementById('uploadfile11').files[0], {
+            download:true,
+            header:true,
+            skipEmptyLines:true,
+            complete:function(results){
+                for(i=0;i<results.data.length;i++){
+                    flowData11.push(results.data[i].flow);
+                    labels11.push(results.data[i].time);
+                }
+                totentries11=results.data.length;
+                myChart11.data.labels=labels11;
+                myChart11.data.datasets[0].data =flowData11;
+                myChart11.update();
+           
+            }
+        });
+    });
+
+    function zoomClick2(click,chart){
+      const{scales:{x,y}}=chart;
+      chart.config.options.scales.x.min=x.getValueForPixel(click.offsetX);
+      chart.config.options.scales.x.max=totentries11;
+      chart.update();
+    }
+    
+    myChart11.canvas.addEventListener('click',(e)=>{
+         zoomClick2(e,myChart11);
+    });
+</script>
+<script>
+      const dates12 = [ '2022-08-01','2022-08-02','2022-08-03','2022-08-04','2022-08-05','2022-08-06','2022-08-07',
+    '2022-08-08','2022-08-09','2022-08-10','2022-08-11','2022-08-12','2022-08-13','2022-08-14',
+    '2022-08-15','2022-08-16','2022-08-17','2022-08-18','2022-08-19','2022-08-20','2022-08-21',
+    '2022-08-22','2022-08-23','2022-08-24','2022-08-25','2022-08-26','2022-08-27','2022-08-28',
+    '2022-08-29','2022-08-30','2022-08-31',
+    '2022-09-01','2022-09-02','2022-09-03','2022-09-04','2022-09-05','2022-09-06','2022-09-07',
+    '2022-09-08','2022-09-09','2022-09-10','2022-09-11','2022-09-12','2022-09-13','2022-09-14',
+    '2022-09-15','2022-09-16','2022-09-17','2022-09-18','2022-09-19','2022-09-20','2022-09-21',
+    '2022-09-22','2022-09-23','2022-09-24','2022-09-25','2022-09-26','2022-09-27','2022-09-28',
+    '2022-09-29','2022-09-30'
+ ];
+  const datapoints12 = [0.057,
+0.064,
+0.041,
+0.05,
+0,
+0.05,
+0.054,
+0.066,
+0,
+0,
+0,
+0.034,
+0,
+0.033,
+0.032,
+0,
+0,
+0,
+0,
+0,
+0.042,
+0.048,
+0.038,
+0.052,
+0.039,
+0,
+0.033,
+0.044,
+0.036,
+0.096,
+0.057,
+0.064,
+0.041,
+0.05,
+0,
+0.05,
+0.054,
+0.066,
+0,
+0,
+0,
+0.034,
+0,
+0.033,
+0.032,
+0,
+0,
+0,
+0,
+0,
+0.042,
+0.048,
+0.038,
+0.052,
+0.039,
+0,
+0.033,
+0.044,
+0.036,
+0.096,
+0.097,
+0.064,
+0.041,
+0.05,
+0,
+0.05,
+0.054,
+0.066,
+0,
+0,
+0,
+0.034,
+0,
+0.033,
+0.032,
+0,
+0,
+0,
+0,
+0,
+0.042,
+0.048,
+0.038,
+0.052,
+0.039,
+0,
+0.033,
+0.044,
+0.036,
+0.096,
+0.057,
+0.064,
+0.041,
+0.05,
+0,
+0.05,
+0.054,
+0.066,
+0,
+0,
+0,
+0.034,
+0,
+0.033,
+0.032,
+0,
+0,
+0,
+0,
+0,
+0.042,
+0.048,
+0.038,
+0.052,
+0.039,
+0,
+0.033,
+0.044,
+0.036,
+0.096,
+0.097];
+  
+
+  const data12 = {
+    labels: dates12,
+    datasets: [{
+      label: 'Water consumption(in litres)',
+      data: datapoints12,
+      backgroundColor: [
+        'rgba(255, 26, 104, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(0, 0, 0, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 26, 104, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+        'rgba(0, 0, 0, 1)'
+      ],
+      borderWidth: 1
+    }]
+  };
+
+  const config12 = {
+    type: 'line',
+    data: data12,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          title:{
+          display:true,
+          text:'water consumption(in litres)',
+          color:'black'
+        }
+        }
+      }
+    }
+  };
+
+  const myChart12 = new Chart(
+    document.getElementById('myChart12'),
+    config=config12
+  );
+  function filterData12(){
+      const dates122=[...dates12];
+      const startdate12=document.getElementById('startdate12');
+      const enddate12=document.getElementById('enddate12');
+      
+      indexstartdate12=dates122.indexOf(startdate12.value);
+      indexenddate12=dates122.indexOf(enddate12.value);
+      const filterDate12=dates122.slice(indexstartdate12, indexenddate12 +1);
+
+      myChart12.config.data.labels=filterDate12;
+      myChart12.update(); 
+  }
+  
+    const waterconsumptiondata12=[];
+    const uploadconfirm12= document.getElementById('uploadconfirm12').addEventListener('click',()=>{
+        Papa.parse(document.getElementById('uploadfile12').files[0], {
+            download:true,
+            header:true,
+            skipEmptyLines:true,
+            complete:function(results){
+                for(i=0;i<results.data.length;i++){
+                }
+                myChart12.data.datasets[0].data =waterconsumptiondata12
+                myChart12.update();
+            }
+        });
+    });
+</script>
+<script>
+    const dates13 = [ 19_59,
+ 1958,
+ 1957,
+ 1956,
+ 1955,
+ 1954,
+ 1953,
+ 1952,
+ 1951,
+ 1950,
+ 1949,
+ 1948,
+ 1947,
+ 1946,
+ 1945,
+ 1944,
+ 1943,
+ 1942,
+ 1941,
+ 1940,
+ 1939,
+ 1938,
+ 1937,
+ 1936,
+ 1935,
+ 1934,
+ 1933,
+ 1932,
+ 1931,
+ 1930];
+  const datapoints13 = [2.688,
+3.031,
+1.953,
+2.344,
+0,
+2.391,
+2.578,
+3.125,
+0,
+0,
+0,
+1.617,
+0,
+1.562,
+1.523,
+0,
+0,
+0,
+0,
+0,
+2,
+2.297,
+1.812,
+2.484,
+1.859,
+0,
+1.555,
+2.078,
+1.719,
+4.562];
+
+  const data13 = {
+    labels: dates13,
+    datasets: [{
+      label: 'PRESSURE',
+      data: datapoints13,
+      backgroundColor: 
+        'rgba(255, 26, 104, 0)',
+        
+      borderColor: 
+        'rgba(255, 26, 104, 1)',
+       
+      borderWidth: 0.5
+    }]
+  };
+
+  // config 
+  const config13 = {
+    type: 'line',
+    data: data13,
+    
+    options: {
+      elements:{
+          point:{
+            pointRadius:0,
+          }
+      },
+      scales: {
+        x:{
+            ticks:{maxTicksLimit:13},
+            min:0,
+            max:29
+        },
+        y: {
+          title:{
+          display:true,
+          text:'pressure(in bar)',
+          color:'black'
+        }
+        }
+      }
+    }
+  };
+
+  const myChart13 = new Chart(
+    document.getElementById('myChart13'),
+    config=config13
+  );
+
+    let totentries13=0;
+    const flowData13=[];
+    const velocityData13=[];
+    const pressureData13=[];
+    const labels13=[];
+    const voltageData13=[];
+
+    const resetxcoordinate13=document.getElementById('resetxcoordinate13').addEventListener('click',()=>{
+      myChart13.config.options.scales.x.min=0;
+      myChart13.update();
+    })
+
+    const uploadconfirm13= document.getElementById('uploadconfirm13').addEventListener('click',()=>{
+        Papa.parse(document.getElementById('uploadfile13').files[0], {
+            download:true,
+            header:true,
+            skipEmptyLines:true,
+            complete:function(results){
+                for(i=0;i<results.data.length;i++){
+                    pressureData13.push(results.data[i].pressure);
+                    labels13.push(results.data[i].time);
+                }
+                totentries13=results.data.length;
+                myChart13.data.labels=labels13;
+                myChart13.data.datasets[0].data =pressureData13;
+                myChart13.update();
+          }
+        });
+    });
+
+    function zoomClick3(click,chart){
+      const{scales:{x,y}}=chart;
+      chart.config.options.scales.x.min=x.getValueForPixel(click.offsetX);
+      chart.config.options.scales.x.max=totentries13;
+      chart.update();
+    }
+    
+    myChart13.canvas.addEventListener('click',(e)=>{
+         zoomClick3(e,myChart13);
+    });
+  </script>
+</body>
+</html>

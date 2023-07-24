@@ -1,5 +1,6 @@
 # Dashboard-for-water-management.
 Through this dashboard, you can analyze the trends in the water consumption of a certain area.
+Just download the code, and run the dc18.html file.
 
 Abstract
 This project aims to develop a web-based tool to process, visualize and analyze the flow rate and pressure in a water distribution system. The overall project is directed towards three main goals: 1) preprocessing the raw data to make it consistent and noise free; 2) development of a online web-based tool system to enable remote visualisation of the sensor data and water consumption trends; 3) analysing the data and inferring trends and patterns out of it. Data set from a water distribution system at IIT Jodhpur is used to demonstrate the capabilities of the developed tool and to demonstrate howincorporating web-based tool visualisations will be advantageous in decision making to meet the water requirement beforehand, optimize our operational inefficiencies, and spot potential leaks and pipe bursts. Finally, we discuss the future plans for the project.
